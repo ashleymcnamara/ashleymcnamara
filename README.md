@@ -79,72 +79,98 @@
 
 ---
 
-## 🌟 My Top 8 Page 🌟
+## 🌟 My Team 🌟
 
-<table align="center">
+<table align="left">
   <tr>
-    <!-- jessfraz -->
-    <td align="center">
-      <a href="https://github.com/jessfraz">
-        <img src="https://github.com/jessfraz.png" width="100px;" alt="jessfraz"/>
+    <!-- mishmanners -->
+    <td align="left">
+      <a href="https://github.com/mishmanners">
+        <img src="https://github.com/mishmanners.png" width="100px;" alt="mishmanners"/>
         <br />
-        <sub><b>jessfraz</b></sub>
+        <sub><b>mishmanners</b></sub>
       </a>
     </td>
-    <!-- spf13 -->
-    <td align="center">
-      <a href="https://github.com/spf13">
-        <img src="https://github.com/spf13.png" width="100px;" alt="spf13"/>
+    <!-- damovisa -->
+    <td align="left">
+      <a href="https://github.com/damovisa">
+        <img src="https://github.com/damovisa.png" width="100px;" alt="damovisa"/>
         <br />
-        <sub><b>spf13</b></sub>
+        <sub><b>damovisa</b></sub>
       </a>
     </td>
-    <!-- bnb -->
-    <td align="center">
-      <a href="https://github.com/bnb">
-        <img src="https://github.com/bnb.png" width="100px;" alt="bnb"/>
+    <!-- ladykerr -->
+    <td align="left">
+      <a href="https://github.com/ladykerr">
+        <img src="https://github.com/ladykerr.png" width="100px;" alt="ladykerr"/>
         <br />
-        <sub><b>bnb</b></sub>
+        <sub><b>ladykerr</b></sub>
       </a>
     </td>
-    <!-- krisnova -->
-    <td align="center">
-      <a href="https://github.com/krisnova">
-        <img src="https://github.com/krisnova.png" width="100px;" alt="krisnova"/>
+    <!-- filmgirl -->
+    <td align="left">
+      <a href="https://github.com/filmgirl">
+        <img src="https://github.com/filmgirl.png" width="100px;" alt="filmgirl"/>
         <br />
-        <sub><b>krisnova</b></sub>
+        <sub><b>filmgirl</b></sub>
       </a>
     </td>
-    <!-- rakyll -->
-    <td align="center">
-      <a href="https://github.com/rakyll">
-        <img src="https://github.com/rakyll.png" width="100px;" alt="rakyll"/>
+    <!-- octobrian -->
+    <td align="left">
+      <a href="https://github.com/octobrian">
+        <img src="https://github.com/octobrian.png" width="100px;" alt="octobrian"/>
         <br />
-        <sub><b>rakyll</b></sub>
+        <sub><b>octobrian</b></sub>
       </a>
     </td>
-    <!-- kelseyhightower -->
-    <td align="center">
-      <a href="https://github.com/kelseyhightower">
-        <img src="https://github.com/kelseyhightower.png" width="100px;" alt="kelseyhightower"/>
+  </tr>
+  <tr>
+    <!-- chrisreddington -->
+    <td align="left">
+      <a href="https://github.com/chrisreddington">
+        <img src="https://github.com/chrisreddington.png" width="100px;" alt="chrisreddington"/>
         <br />
-        <sub><b>kelseyhightower</b></sub>
+        <sub><b>chrisreddington</b></sub>
       </a>
     </td>
-    <!-- EricaJoy -->
-    <td align="center">
-      <a href="https://github.com/EricaJoy">
-        <img src="https://github.com/EricaJoy.png" width="100px;" alt="EricaJoy"/>
+    <!-- dhanachavan -->
+    <td align="left">
+      <a href="https://github.com/dhanachavan">
+        <img src="https://github.com/dhanachavan.png" width="100px;" alt="dhanachavan"/>
         <br />
-        <sub><b>EricaJoy</b></sub>
+        <sub><b>dhanachavan</b></sub>
       </a>
     </td>
-    <!-- bdougie -->
-    <td align="center">
-      <a href="https://github.com/bdougie">
-        <img src="https://github.com/bdougie.png" width="100px;" alt="bdougie"/>
+    <!-- scubaninja -->
+    <td align="left">
+      <a href="https://github.com/scubaninja">
+        <img src="https://github.com/scubaninja.png" width="100px;" alt="scubaninja"/>
         <br />
-        <sub><b>bdougie</b></sub>
+        <sub><b>scubaninja</b></sub>
+      </a>
+    </td>
+    <!-- peckjon -->
+    <td align="left">
+      <a href="https://github.com/peckjon">
+        <img src="https://github.com/peckjon.png" width="100px;" alt="peckjon"/>
+        <br />
+        <sub><b>peckjon</b></sub>
+      </a>
+    </td>
+    <!-- DaveBurnisonMS -->
+    <td align="left">
+      <a href="https://github.com/DaveBurnisonMS">
+        <img src="https://github.com/DaveBurnisonMS.png" width="100px;" alt="DaveBurnisonMS"/>
+        <br />
+        <sub><b>DaveBurnisonMS</b></sub>
+      </a>
+    </td>
+    <!-- geektrainer -->
+    <td align="left">
+      <a href="https://github.com/geektrainer">
+        <img src="https://github.com/geektrainer.png" width="100px;" alt="geektrainer"/>
+        <br />
+        <sub><b>geektrainer</b></sub>
       </a>
     </td>
   </tr>
