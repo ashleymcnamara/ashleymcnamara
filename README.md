@@ -24,7 +24,7 @@
 
 ---
 
-### 🌟 About Me 🌟
+### 🌟 About Me 
 
 👩‍💼 **Role**: Senior Director of Developer Relations at GitHub  
 🌐 **What I Do**: Facilitator of a global developer community.  
@@ -65,11 +65,6 @@
 <p align="left">
   <!-- Overall Stats -->
   <img align="left" src="https://github-readme-stats.vercel.app/api?username=ashleymcnamara&show_icons=true&include_all_commits=true&theme=cobalt&hide_border=true" alt="My GitHub stats" width="430" />
-  
-  <!-- Streak Stats -->
-  <img align="right" src="https://github-readme-streak-stats.herokuapp.com?user=ashleymcnamara&theme=vue-dark&hide_border=true&date_format=M%20j%5B%2C%20Y%5D" alt="My GitHub streak stats" width="430" />
-</p>
-
 <br><br><br><br><br><br><br><br><br><br>
 
 ---
@@ -80,7 +75,6 @@
   <!-- GitHub Trophies -->
   <img align="left" src="https://github-profile-trophy.vercel.app/?username=ashleymcnamara&theme=discord" alt="GitHub Trophy" width="930" />
 </p>
-
 <br><br><br><br><br><br><br><br><br><br>
 
 ---
