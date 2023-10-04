@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="https://i.ibb.co/DRtybK1/Ashley.png" alt="Header" />
+  <a href="https://ashley.dev" target="_blank" rel="noopener noreferrer">
+    <img src="https://i.ibb.co/DRtybK1/Ashley.png" alt="Header" />
+  </a>
 </p>
 <p align="center">
   <a href="https://github.com/ashleymcnamara" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank'); return false;">
