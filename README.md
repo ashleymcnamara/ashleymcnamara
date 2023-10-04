@@ -86,12 +86,12 @@
 
 <table align="left">
   <tr>
-    <!-- mishmanners -->
+    <!-- chrisreddington -->
     <td align="left">
-      <a href="https://github.com/mishmanners">
-        <img src="https://github.com/mishmanners.png" width="100px;" alt="mishmanners"/>
+      <a href="https://github.com/chrisreddington">
+        <img src="https://github.com/chrisreddington.png" width="100px;" alt="chrisreddington"/>
         <br />
-        <sub><b>mishmanners</b></sub>
+        <sub><b>chrisreddington</b></sub>
       </a>
     </td>
     <!-- damovisa -->
@@ -102,38 +102,12 @@
         <sub><b>damovisa</b></sub>
       </a>
     </td>
-    <!-- ladykerr -->
+    <!-- DaveBurnisonMS -->
     <td align="left">
-      <a href="https://github.com/ladykerr">
-        <img src="https://github.com/ladykerr.png" width="100px;" alt="ladykerr"/>
+      <a href="https://github.com/DaveBurnisonMS">
+        <img src="https://github.com/DaveBurnisonMS.png" width="100px;" alt="DaveBurnisonMS"/>
         <br />
-        <sub><b>ladykerr</b></sub>
-      </a>
-    </td>
-    <!-- filmgirl -->
-    <td align="left">
-      <a href="https://github.com/filmgirl">
-        <img src="https://github.com/filmgirl.png" width="100px;" alt="filmgirl"/>
-        <br />
-        <sub><b>filmgirl</b></sub>
-      </a>
-    </td>
-    <!-- octobrian -->
-    <td align="left">
-      <a href="https://github.com/octobrian">
-        <img src="https://github.com/octobrian.png" width="100px;" alt="octobrian"/>
-        <br />
-        <sub><b>octobrian</b></sub>
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <!-- chrisreddington -->
-    <td align="left">
-      <a href="https://github.com/chrisreddington">
-        <img src="https://github.com/chrisreddington.png" width="100px;" alt="chrisreddington"/>
-        <br />
-        <sub><b>chrisreddington</b></sub>
+        <sub><b>DaveBurnisonMS</b></sub>
       </a>
     </td>
     <!-- dhanachavan -->
@@ -144,12 +118,46 @@
         <sub><b>dhanachavan</b></sub>
       </a>
     </td>
-    <!-- scubaninja -->
+    <!-- filmgirl -->
     <td align="left">
-      <a href="https://github.com/scubaninja">
-        <img src="https://github.com/scubaninja.png" width="100px;" alt="scubaninja"/>
+      <a href="https://github.com/filmgirl">
+        <img src="https://github.com/filmgirl.png" width="100px;" alt="filmgirl"/>
         <br />
-        <sub><b>scubaninja</b></sub>
+        <sub><b>filmgirl</b></sub>
+      </a>
+    </td>
+    <!-- geektrainer -->
+    <td align="left">
+      <a href="https://github.com/geektrainer">
+        <img src="https://github.com/geektrainer.png" width="100px;" alt="geektrainer"/>
+        <br />
+        <sub><b>geektrainer</b></sub>
+      </a>
+    </td>
+    <!-- ladykerr -->
+    <td align="left">
+      <a href="https://github.com/ladykerr">
+        <img src="https://github.com/ladykerr.png" width="100px;" alt="ladykerr"/>
+        <br />
+        <sub><b>ladykerr</b></sub>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <!-- mishmanners -->
+    <td align="left">
+      <a href="https://github.com/mishmanners">
+        <img src="https://github.com/mishmanners.png" width="100px;" alt="mishmanners"/>
+        <br />
+        <sub><b>mishmanners</b></sub>
+      </a>
+    </td>
+    <!-- octobrian -->
+    <td align="left">
+      <a href="https://github.com/octobrian">
+        <img src="https://github.com/octobrian.png" width="100px;" alt="octobrian"/>
+        <br />
+        <sub><b>octobrian</b></sub>
       </a>
     </td>
     <!-- peckjon -->
@@ -160,20 +168,12 @@
         <sub><b>peckjon</b></sub>
       </a>
     </td>
-    <!-- DaveBurnisonMS -->
+    <!-- scubaninja -->
     <td align="left">
-      <a href="https://github.com/DaveBurnisonMS">
-        <img src="https://github.com/DaveBurnisonMS.png" width="100px;" alt="DaveBurnisonMS"/>
+      <a href="https://github.com/scubaninja">
+        <img src="https://github.com/scubaninja.png" width="100px;" alt="scubaninja"/>
         <br />
-        <sub><b>DaveBurnisonMS</b></sub>
-      </a>
-    </td>
-    <!-- geektrainer -->
-    <td align="left">
-      <a href="https://github.com/geektrainer">
-        <img src="https://github.com/geektrainer.png" width="100px;" alt="geektrainer"/>
-        <br />
-        <sub><b>geektrainer</b></sub>
+        <sub><b>scubaninja</b></sub>
       </a>
     </td>
   </tr>
