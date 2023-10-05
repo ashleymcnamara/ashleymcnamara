@@ -28,7 +28,7 @@
 ---
 
 ### 🌟 About Me 
-
+<img align="right" width="150" height="150" src="https://github.com/MishManners/MishManners/blob/master/My-OctocatsShortest.gif"></a>
 👩‍💼 **Role**: Senior Director of Developer Relations at GitHub  
 🌐 **What I Do**: Facilitator of a global developer community.  
 🚀 **Our Mission**: Enrich your experience with GitHub to add genuine value to your work and life.  
@@ -65,10 +65,13 @@
 
 ## 📊 My GitHub Stats 
 
-<p align="left">
-  <!-- Overall Stats -->
-  <img align="left" src="https://github-readme-stats.vercel.app/api?username=ashleymcnamara&show_icons=true&include_all_commits=true&theme=cobalt&hide_border=true" alt="My GitHub stats" width="430" />
-<br><br><br><br><br><br><br><br><br><br>
+<p style="text-align:left;">
+  <img src="https://github-readme-stats.vercel.app/api?username=ashleymcnamara&show_icons=true&include_all_commits=true&count_private=true&theme=jolly&layout=compact" alt="GitHub Stats for ashleymcnamara" width="700">
+</p>
+
+<div style="height: 200px;"> <!-- Adjust height as needed -->
+  <!-- This space intentionally left blank for layout -->
+</div>
 
 ---
 
