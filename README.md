@@ -79,7 +79,7 @@
 
 <p align="left">
   <!-- GitHub Trophies -->
-  <img align="left" src="https://github-profile-trophy.vercel.app/?username=ashleymcnamara&theme=discord" alt="GitHub Trophy" width="930" />
+  <img align="left" src="https://github-profile-trophy.vercel.app/?username=ashleymcnamara&theme=darkhub" alt="GitHub Trophy" width="930" />
 </p>
 <br><br><br><br><br><br><br><br><br><br>
 
