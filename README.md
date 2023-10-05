@@ -58,9 +58,9 @@
 
 ### 👥 Organizations & Board Memberships 
   
- 1️⃣. Former Chair of Gophercon  
- 2️⃣. Core Member of the GoBridge Foundation  
- 3️⃣. Served on the Board of CNCF
+ 1️⃣ Former Chair of Gophercon  
+ 2️⃣ Core Member of the GoBridge Foundation  
+ 3️⃣ Served on the Board of CNCF
 
 ---
 
