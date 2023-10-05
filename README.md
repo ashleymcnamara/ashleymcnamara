@@ -30,11 +30,11 @@
 ### 🌟 About Me 
 <img align="right" width="150" height="150" src="https://github.com/MishManners/MishManners/blob/master/My-OctocatsShortest.gif"></a>
 
-- **👩‍💼 Who I Am**: I'm the Senior Director of Developer Relations at GitHub, and I'm super passionate about community!
-- **🌐 What I'm Focused On**: My role is all about nurturing a diverse and vibrant developer ecosystem across the globe. It's not just a job; it's a calling.
-- **🚀 My Mission**: I'm here to make your GitHub experience as awesome as possible. From streamlining collaboration to innovating your workflow, we're invested in your success.
-- **🤝 Let's Connect**: Your triumphs fuel us. We're all ears when it comes to providing the resources, support, and community connections you need to shine.
-- **🌍 Where You Can Find Me**: Although GitHub connects me globally, my roots are in the beautiful city of Seattle, WA.
+**👩‍💼 Who I Am**: I'm the Senior Director of Developer Relations at GitHub, and I'm super passionate about community!  
+**🌐 What I'm Focused On**: My role is all about nurturing a diverse and vibrant developer ecosystem across the globe. It's not just a job; it's a calling.  
+**🚀 My Mission**: I'm here to make your GitHub experience as awesome as possible. From streamlining collaboration to innovating your workflow, we're invested in your success.  
+**🤝 Let's Connect**: Your triumphs fuel us. We're all ears when it comes to providing the resources, support, and community connections you need to shine.  
+**🌍 Where You Can Find Me**: Although GitHub connects me globally, my roots are in the beautiful city of Seattle, WA.  
 
 
 
