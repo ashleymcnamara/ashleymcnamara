@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://ashley.dev" target="_blank" rel="noopener noreferrer">
-    <img src="https://i.ibb.co/DRtybK1/Ashley.png" alt="Header" />
+    <img src="https://i.ibb.co/FWHNpZy/OCTOCAT-1.jpg" alt="Header" />
   </a>
 </p>
 <p align="center">
