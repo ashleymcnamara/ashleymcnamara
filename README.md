@@ -63,6 +63,11 @@
 
 ---
 
+## 😂 Here is a random joke that'll make you laugh!
+![Jokes Card](https://readme-jokes.vercel.app/api)
+
+---
+
 ## 📊 My GitHub Stats 
 
 <p style="text-align:left;">
