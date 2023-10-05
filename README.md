@@ -63,8 +63,10 @@
 
 ---
 
-## 😂 Here is a random joke that'll make you laugh!
-![Jokes Card](https://readme-jokes.vercel.app/api)
+## 😂 Here is a random joke!
+<p style="text-align:left;">
+  <img src="https://readme-jokes.vercel.app/api" alt="Jokes Card" width="600">
+</p>
 
 ---
 
