@@ -43,7 +43,7 @@
 🌐 Open Source  
 🛠️ DevOps  
 👑 Leadership  
-💡 Mental Health Awareness     
+💡 Work / Life Balance     
 🌈 DEI  
 
 ---
@@ -51,7 +51,7 @@
 ### 🌈 Other Pursuits 
 
 📷 Photography  
-🛠️ 3D Printing  
+🛠️ Maker Things   
 🗣️ Public Speaking  
 
 ---
