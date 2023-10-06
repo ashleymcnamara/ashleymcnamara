@@ -74,11 +74,9 @@
 
 ## 📊 My GitHub Stats 
 
-<p style="text-align:left;">
-  <img src="https://github-readme-stats.vercel.app/api?username=ashleymcnamara&show_icons=true&include_all_commits=true&count_private=true&theme=jolly&layout=compact" alt="GitHub Stats for ashleymcnamara" width="700">
-</p>
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=ashleymcnamara&theme=jolly&card_width=700)](https://git.io/streak-stats)
 
-<div style="height: 200px;"> <!-- Adjust height as needed -->
+<!-- Adjust height as needed -->
   <!-- This space intentionally left blank for layout -->
 </div>
 
