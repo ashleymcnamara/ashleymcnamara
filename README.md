@@ -72,16 +72,6 @@
 
 ---
 
-## 📊 My GitHub Stats 
-
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=ashleymcnamara&theme=jolly&card_width=700)](https://git.io/streak-stats)
-
-<!-- Adjust height as needed -->
-  <!-- This space intentionally left blank for layout -->
-</div>
-
----
-
 ## 🏆 GitHub Trophies 
 
 <p align="left">
