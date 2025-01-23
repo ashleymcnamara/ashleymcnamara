@@ -28,7 +28,6 @@
 ---
 
 ### 🌟 About Me 
-<img align="right" width="150" height="150" src="https://github.com/MishManners/MishManners/blob/master/My-OctocatsShortest.gif"></a>
  **👩‍💼 Who I Am**: I’m the Senior Director of Developer Relations at GitHub, with a deep passion for building and empowering communities!
  
  **🌐 What I'm Focused On**: My role is centered around fostering a diverse and thriving developer ecosystem worldwide.
