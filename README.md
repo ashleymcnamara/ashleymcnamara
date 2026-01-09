@@ -56,14 +56,5 @@
 🛠️ Maker Things   
 🗣️ Public Speaking  
 
----
 
-## 😂 Here is a random joke!
-
-<p style="text-align:left;">
-  <img src="https://readme-jokes.vercel.app/api" alt="Jokes Card" width="600">
-</p>
-
-
----
 
