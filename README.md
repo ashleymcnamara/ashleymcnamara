@@ -7,8 +7,8 @@
   <a href="https://github.com/ashleymcnamara" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank'); return false;">
     <img src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" alt="GitHub Badge" />
   </a>
-  <a href="https://twitter.com/ashleymcnamara" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank'); return false;">
-    <img src="https://img.shields.io/badge/Twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter Badge" />
+  <a href="https://x.com/ashleymcnamara" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank'); return false;">
+    <img src="https://img.shields.io/badge/X-%23000000.svg?&style=for-the-badge&logo=x&logoColor=white" alt="X Badge" />
   </a>
   <a href="https://www.linkedin.com/in/ashleymcnamara1/" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href, '_blank'); return false;">
     <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge" />
