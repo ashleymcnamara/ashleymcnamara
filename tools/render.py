@@ -174,9 +174,8 @@ def header(cal, phone=False, theme="dark"):
         body = (frame(W, H, th, "top")
                 + title_text(22, 52, 26, "ASHLEY WILLIS", th) + title_text(22, 86, 24, "LEADS DEVREL AT GITHUB.", th)
                 + f'<text font-family="{SANS}" font-size="13.5" fill="{th['text']}">'
-                  f'<tspan x="22" y="118">Sr. Director of Developer Relations at</tspan>'
-                  f'<tspan x="22" y="137">GitHub. After hours, I build tiny,</tspan>'
-                  f'<tspan x="22" y="156">delightful toys for the web.</tspan></text>'
+                  f'<tspan x="22" y="124">After hours, I build tiny,</tspan>'
+                  f'<tspan x="22" y="144">delightful toys for the web.</tspan></text>'
                 + f'<rect x="18" y="168" width="{W - 36}" height="134" rx="8" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
                 + f'<text x="31" y="189" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_mid}</text>'
                 + f'<text x="{W - 31}" y="189" text-anchor="end" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_right}</text>'
@@ -189,8 +188,7 @@ def header(cal, phone=False, theme="dark"):
         body = (frame(W, H, th, "top")
                 + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "LEADS DEVREL AT GITHUB.", th)
                 + f'<text font-family="{SANS}" font-size="17" fill="{th['text']}">'
-                  f'<tspan x="44" y="178">Sr. Director of Developer Relations at GitHub. After hours,</tspan>'
-                  f'<tspan x="44" y="201">I build tiny, delightful toys for the web.</tspan></text>'
+                  f'<tspan x="44" y="186">After hours, I build tiny, delightful toys for the web.</tspan></text>'
                 + f'<rect x="44" y="220" width="{W - 88}" height="152" rx="10" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
                 + f'<text x="66" y="246" font-family="{MONO}" font-size="12" fill="{TEAL}">P1 · {USER.upper()}</text>'
                 + f'<text x="{W / 2}" y="246" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_mid}</text>'
