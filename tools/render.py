@@ -22,10 +22,10 @@ PINK = "#f7a8c4"
 SHADOW = "#b8336a"
 TEAL = "#7ee0d4"
 THEMES = {
-    "dark": {"top": "#1a0f2e", "bot": "#0d1117", "edge": "#3b2a5a", "title": YELLOW, "shadow": SHADOW,
-             "text": "#c9d1d9", "muted": "#8b949e", "card": "#0d1117", "head": YELLOW, "coin": PINK},
-    "light": {"top": "#fff0f6", "bot": "#fffaf0", "edge": "#f0cfe0", "title": INK, "shadow": PINK,
-              "text": "#4a3a5a", "muted": "#7a6a8a", "card": "#fffaf0", "head": SHADOW, "coin": "#d1477a"},
+    "dark": {"edge": "#3b2a5a", "title": YELLOW, "shadow": SHADOW, "outline": None,
+             "text": "#c9d1d9", "muted": "#8b949e", "cab": "#1a0f2e", "head": YELLOW, "coin": PINK},
+    "light": {"edge": "#f0cfe0", "title": YELLOW, "shadow": INK, "outline": INK,
+              "text": "#4a3a5a", "muted": "#7a6a8a", "cab": "#fdebf3", "head": SHADOW, "coin": "#d1477a"},
 }
 LEVELS = {"NONE": "#161b22", "FIRST_QUARTILE": "#0e4429", "SECOND_QUARTILE": "#006d32",
           "THIRD_QUARTILE": "#26a641", "FOURTH_QUARTILE": "#39d353"}
@@ -133,7 +133,7 @@ def snake_board(weeks, x0, y0, pitch, cell, step):
 
 def svg(w, h, css, body, title):
     reduce = "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" '
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" preserveAspectRatio="none" '
             f'role="img" aria-label="{esc(title)}"><title>{esc(title)}</title>'
             f"<style>{css}{reduce}</style>{body}</svg>\n")
 
@@ -142,8 +142,21 @@ def title_text(x, y, size, text, th, anchor="start"):
     t = esc(text)
     common = f'font-family="{MONO}" font-weight="800" font-size="{size}" text-anchor="{anchor}"'
     off = max(2, size // 12)
-    return (f'<text x="{x + off}" y="{y + off}" {common} fill="{th["shadow"]}">{t}</text>'
-            f'<text x="{x}" y="{y}" {common} fill="{th["title"]}">{t}</text>')
+    line = ""
+    if th["outline"]:
+        sw = max(2, size / 9)
+        line = f' stroke="{th["outline"]}" stroke-width="{sw:.1f}" stroke-linejoin="round" paint-order="stroke"'
+    return (f'<text x="{x + off}" y="{y + off}" {common} fill="{th["shadow"]}"{line}>{t}</text>'
+            f'<text x="{x}" y="{y}" {common} fill="{th["title"]}"{line}>{t}</text>')
+
+
+def frame(W, H, th, part):
+    """One slice of the shared cabinet. Slices fill edge to edge so tiles meet with no visible seam."""
+    box = {"top": (0, 0, W, H + 40), "bottom": (0, -40, W, H + 40),
+           "left": (-40, -40, W + 80, H + 80), "right": (-40, -40, W + 80, H + 80),
+           "mid": (-40, -40, W + 80, H + 80)}[part]
+    x, y, w, h = box
+    return (f'<rect x="{x}" y="{y}" width="{w:.2f}" height="{h}" rx="16" fill="{th["cab"]}"/>')
 
 
 def header(cal, phone=False, theme="dark"):
@@ -153,14 +166,12 @@ def header(cal, phone=False, theme="dark"):
     best = max(d["contributionCount"] for wk in weeks for d in wk["contributionDays"])
     hud_mid = f"{total:,} CONTRIBUTIONS"
     hud_right = f"BEST DAY {best}"
-    bg = ('<defs><linearGradient id="cab" x1="0" y1="0" x2="0" y2="1">'
-          f'<stop offset="0" stop-color="{th['top']}"/><stop offset="1" stop-color="{th['bot']}"/></linearGradient></defs>')
     if phone:
         weeks = weeks[-26:]
         W, H, pitch, cell = 400, 330, 13, 10.5
         gx, gy = 31, 200
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.16)
-        body = (bg + f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="url(#cab)" stroke="{th['edge']}" stroke-width="2"/>'
+        body = (frame(W, H, th, "top")
                 + title_text(22, 52, 26, "ASHLEY WILLIS", th) + title_text(22, 86, 26, "MAKES TINY TOYS.", th)
                 + f'<text font-family="{SANS}" font-size="13.5" fill="{th['text']}">'
                   f'<tspan x="22" y="118">Sr. Director of DevRel at GitHub. In my</tspan>'
@@ -175,7 +186,7 @@ def header(cal, phone=False, theme="dark"):
         W, H, pitch, cell = 900, 410, 14.6, 11.5
         gx, gy = 66, 262
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.11)
-        body = (bg + f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="16" fill="url(#cab)" stroke="{th['edge']}" stroke-width="2"/>'
+        body = (frame(W, H, th, "top")
                 + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "MAKES TINY TOYS.", th)
                 + f'<text font-family="{SANS}" font-size="17" fill="{th['text']}">'
                   f'<tspan x="44" y="178">Sr. Director of DevRel at GitHub. In my spare time I build small,</tspan>'
@@ -204,7 +215,14 @@ def cart_shell(W, H, color):
             + f'<rect x="{W * .22:.0f}" y="0" width="{W * .56:.0f}" height="8" rx="3" fill="#0003"/>')
 
 
-def cart(c, i):
+def slot(w, h, body, i, theme, SW, dx, dy, k, title):
+    SH = round(h * k + dy + 14)
+    part = ["left", "mid", "right"][i]
+    return svg(f"{SW:.2f}", SH, CART_CSS, frame(SW, SH, THEMES[theme], part)
+               + f'<g transform="translate({dx} {dy}) scale({k})">{body}</g>', title)
+
+
+def cart(c, i, theme="dark"):
     W, H = 300, 350
     body = (cart_shell(W, H, c["body"])
             + f'<rect x="18" y="24" width="264" height="262" rx="8" fill="#fffaf0" stroke="{INK}" stroke-width="3"/>'
@@ -218,10 +236,10 @@ def cart(c, i):
             + f'<text x="256" y="260" text-anchor="end" font-family="{MONO}" font-weight="800" font-size="12" fill="#fffaf0" letter-spacing="1">{c["tag"][1]}</text>'
             + f'<text class="start" style="animation-delay:{i * .45:.2f}s" x="{W / 2}" y="318" text-anchor="middle" font-family="{MONO}" '
               f'font-weight="800" font-size="14" fill="{INK}" letter-spacing="2">▶ {esc(c["start"])}</text>')
-    return svg(W, H, CART_CSS, body, f'{c["title"]}: {" ".join(c["desc"])} {c["start"]}.')
+    return slot(W, H, body, i, theme, 300, 18, 4, .88, f'{c["title"]}: {" ".join(c["desc"])} {c["start"]}.')
 
 
-def cart_phone(c, i):
+def cart_phone(c, i, theme="dark"):
     W, H = 150, 230
     body = (cart_shell(W, H, c["body"])
             + f'<rect x="10" y="16" width="130" height="164" rx="6" fill="#fffaf0" stroke="{INK}" stroke-width="2.5"/>'
@@ -231,7 +249,7 @@ def cart_phone(c, i):
             + f'<text x="75" y="166" text-anchor="middle" font-family="{MONO}" font-weight="800" font-size="10" fill="#4a3a5a" letter-spacing=".5">{esc(c["tag"][0])}</text>'
             + f'<text class="start" style="animation-delay:{i * .45:.2f}s" x="75" y="206" text-anchor="middle" font-family="{MONO}" '
               f'font-weight="800" font-size="11" fill="{INK}" letter-spacing="1">▶ {esc(c["start"])}</text>')
-    return svg(W, H, CART_CSS, body, f'{c["title"]}: {" ".join(c["desc"])}')
+    return slot(W, H, body, i, theme, 400 / 3, 6.67, 2, .8, f'{c["title"]}: {" ".join(c["desc"])}')
 
 
 def credits(phone=False, theme="dark"):
@@ -245,7 +263,8 @@ def credits(phone=False, theme="dark"):
         W, H = 900, 130
         lines = ["Yes, I drew the Go gophers 🐹 They're retired, free to use, and not open for commissions."]
         fs, y0, lh = 14, 70, 22
-    body = (f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="{th['card']}" stroke="{th['edge']}" stroke-width="2"/>'
+    body = (frame(W, H, th, "bottom")
+            + f'<line x1="{W * .08:.0f}" y1="8" x2="{W * .92:.0f}" y2="8" stroke="{th['edge']}" stroke-width="2" stroke-dasharray="6 6"/>'
             + f'<text x="{W / 2}" y="38" text-anchor="middle" font-family="{MONO}" font-weight="800" font-size="15" fill="{th['head']}" letter-spacing="2">CREDITS</text>'
             + "".join(f'<text x="{W / 2}" y="{y0 + i * lh}" text-anchor="middle" font-family="{MONO}" font-size="{fs}" fill="{th['text']}">{esc(t)}</text>'
                       for i, t in enumerate(lines))
@@ -268,6 +287,8 @@ def main():
     for i, c in enumerate(CARTS):
         files[f"cart-{i + 1}.svg"] = cart(c, i)
         files[f"phone/cart-{i + 1}.svg"] = cart_phone(c, i)
+        files[f"cart-{i + 1}-light.svg"] = cart(c, i, "light")
+        files[f"phone/cart-{i + 1}-light.svg"] = cart_phone(c, i, "light")
     for name, content in files.items():
         path = OUT / name
         path.parent.mkdir(parents=True, exist_ok=True)
