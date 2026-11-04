@@ -21,6 +21,12 @@ YELLOW = "#ffd479"
 PINK = "#f7a8c4"
 SHADOW = "#b8336a"
 TEAL = "#7ee0d4"
+THEMES = {
+    "dark": {"top": "#1a0f2e", "bot": "#0d1117", "edge": "#3b2a5a", "title": YELLOW, "shadow": SHADOW,
+             "text": "#c9d1d9", "muted": "#8b949e", "card": "#0d1117", "head": YELLOW, "coin": PINK},
+    "light": {"top": "#fff0f6", "bot": "#fffaf0", "edge": "#f0cfe0", "title": INK, "shadow": PINK,
+              "text": "#4a3a5a", "muted": "#7a6a8a", "card": "#fffaf0", "head": SHADOW, "coin": "#d1477a"},
+}
 LEVELS = {"NONE": "#161b22", "FIRST_QUARTILE": "#0e4429", "SECOND_QUARTILE": "#006d32",
           "THIRD_QUARTILE": "#26a641", "FOURTH_QUARTILE": "#39d353"}
 
@@ -132,30 +138,31 @@ def svg(w, h, css, body, title):
             f"<style>{css}{reduce}</style>{body}</svg>\n")
 
 
-def title_text(x, y, size, text, anchor="start"):
+def title_text(x, y, size, text, th, anchor="start"):
     t = esc(text)
     common = f'font-family="{MONO}" font-weight="800" font-size="{size}" text-anchor="{anchor}"'
     off = max(2, size // 12)
-    return (f'<text x="{x + off}" y="{y + off}" {common} fill="{SHADOW}">{t}</text>'
-            f'<text x="{x}" y="{y}" {common} fill="{YELLOW}">{t}</text>')
+    return (f'<text x="{x + off}" y="{y + off}" {common} fill="{th["shadow"]}">{t}</text>'
+            f'<text x="{x}" y="{y}" {common} fill="{th["title"]}">{t}</text>')
 
 
-def header(cal, phone=False):
+def header(cal, phone=False, theme="dark"):
+    th = THEMES[theme]
     weeks = cal["weeks"]
     total = cal["totalContributions"]
     best = max(d["contributionCount"] for wk in weeks for d in wk["contributionDays"])
     hud_mid = f"{total:,} CONTRIBUTIONS"
     hud_right = f"BEST DAY {best}"
     bg = ('<defs><linearGradient id="cab" x1="0" y1="0" x2="0" y2="1">'
-          '<stop offset="0" stop-color="#1a0f2e"/><stop offset="1" stop-color="#0d1117"/></linearGradient></defs>')
+          f'<stop offset="0" stop-color="{th['top']}"/><stop offset="1" stop-color="{th['bot']}"/></linearGradient></defs>')
     if phone:
         weeks = weeks[-26:]
         W, H, pitch, cell = 400, 330, 13, 10.5
         gx, gy = 31, 200
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.16)
-        body = (bg + f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="url(#cab)" stroke="#3b2a5a" stroke-width="2"/>'
-                + title_text(22, 52, 26, "ASHLEY WILLIS") + title_text(22, 86, 26, "MAKES TINY TOYS.")
-                + f'<text font-family="{SANS}" font-size="13.5" fill="#c9d1d9">'
+        body = (bg + f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="url(#cab)" stroke="{th['edge']}" stroke-width="2"/>'
+                + title_text(22, 52, 26, "ASHLEY WILLIS", th) + title_text(22, 86, 26, "MAKES TINY TOYS.", th)
+                + f'<text font-family="{SANS}" font-size="13.5" fill="{th['text']}">'
                   f'<tspan x="22" y="118">Sr. Director of DevRel at GitHub. In my</tspan>'
                   f'<tspan x="22" y="137">spare time I build small, delightful</tspan>'
                   f'<tspan x="22" y="156">things for the web.</tspan></text>'
@@ -163,14 +170,14 @@ def header(cal, phone=False):
                 + f'<text x="31" y="189" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_mid}</text>'
                 + f'<text x="{W - 31}" y="189" text-anchor="end" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_right}</text>'
                 + board
-                + f'<text x="22" y="320" font-family="{SANS}" font-size="11" fill="#8b949e">↑ my real contribution graph, redrawn daily as a game of snake</text>')
+                + f'<text x="22" y="320" font-family="{SANS}" font-size="11" fill="{th['muted']}">↑ my real contribution graph, redrawn daily as a game of snake</text>')
     else:
         W, H, pitch, cell = 900, 410, 14.6, 11.5
         gx, gy = 66, 262
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.11)
-        body = (bg + f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="16" fill="url(#cab)" stroke="#3b2a5a" stroke-width="2"/>'
-                + title_text(44, 82, 46, "ASHLEY WILLIS") + title_text(44, 136, 46, "MAKES TINY TOYS.")
-                + f'<text font-family="{SANS}" font-size="17" fill="#c9d1d9">'
+        body = (bg + f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="16" fill="url(#cab)" stroke="{th['edge']}" stroke-width="2"/>'
+                + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "MAKES TINY TOYS.", th)
+                + f'<text font-family="{SANS}" font-size="17" fill="{th['text']}">'
                   f'<tspan x="44" y="178">Sr. Director of DevRel at GitHub. In my spare time I build small,</tspan>'
                   f'<tspan x="44" y="201">delightful things for the web.</tspan></text>'
                 + f'<rect x="44" y="220" width="{W - 88}" height="152" rx="10" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
@@ -178,7 +185,7 @@ def header(cal, phone=False):
                 + f'<text x="{W / 2}" y="246" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_mid}</text>'
                 + f'<text x="{W - 66}" y="246" text-anchor="end" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_right}</text>'
                 + board
-                + f'<text x="44" y="394" font-family="{SANS}" font-size="13" fill="#8b949e">↑ my real contribution graph, redrawn every day as a game of snake</text>')
+                + f'<text x="44" y="394" font-family="{SANS}" font-size="13" fill="{th['muted']}">↑ my real contribution graph, redrawn every day as a game of snake</text>')
     return svg(W, H, css, body, f"Ashley Willis makes tiny toys. A snake eats {USER}'s contribution graph: {total:,} contributions in the last year.")
 
 
@@ -191,7 +198,7 @@ SKYGRAD = ('<defs><linearGradient id="skygrad" x1="0" y1="0" x2="0" y2="1">'
 
 def cart_shell(W, H, color):
     return (SKYGRAD
-            + f'<rect x="0" y="6" width="{W}" height="{H - 6}" rx="10" fill="#0006"/>'
+            + f'<rect x="0" y="6" width="{W}" height="{H - 6}" rx="10" fill="{INK}" fill-opacity=".22"/>'
             + f'<rect x="0" y="0" width="{W}" height="{H - 6}" rx="12" fill="{color}"/>'
             + f'<rect x="0" y="{H - 18}" width="{W}" height="12" fill="#0002"/>'
             + f'<rect x="{W * .22:.0f}" y="0" width="{W * .56:.0f}" height="8" rx="3" fill="#0003"/>')
@@ -227,7 +234,8 @@ def cart_phone(c, i):
     return svg(W, H, CART_CSS, body, f'{c["title"]}: {" ".join(c["desc"])}')
 
 
-def credits(phone=False):
+def credits(phone=False, theme="dark"):
+    th = THEMES[theme]
     css = "@keyframes blink{0%,59%{opacity:1}60%,100%{opacity:0}}.ins{animation:blink 1.2s infinite}"
     if phone:
         W, H = 400, 150
@@ -237,11 +245,11 @@ def credits(phone=False):
         W, H = 900, 130
         lines = ["Yes, I drew the Go gophers 🐹 They're retired, free to use, and not open for commissions."]
         fs, y0, lh = 14, 70, 22
-    body = (f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="#0d1117" stroke="#3b2a5a" stroke-width="2"/>'
-            + f'<text x="{W / 2}" y="38" text-anchor="middle" font-family="{MONO}" font-weight="800" font-size="15" fill="{YELLOW}" letter-spacing="2">CREDITS</text>'
-            + "".join(f'<text x="{W / 2}" y="{y0 + i * lh}" text-anchor="middle" font-family="{MONO}" font-size="{fs}" fill="#c9d1d9">{esc(t)}</text>'
+    body = (f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="14" fill="{th['card']}" stroke="{th['edge']}" stroke-width="2"/>'
+            + f'<text x="{W / 2}" y="38" text-anchor="middle" font-family="{MONO}" font-weight="800" font-size="15" fill="{th['head']}" letter-spacing="2">CREDITS</text>'
+            + "".join(f'<text x="{W / 2}" y="{y0 + i * lh}" text-anchor="middle" font-family="{MONO}" font-size="{fs}" fill="{th['text']}">{esc(t)}</text>'
                       for i, t in enumerate(lines))
-            + f'<text class="ins" x="{W / 2}" y="{H - 20}" text-anchor="middle" font-family="{MONO}" font-weight="700" font-size="13" fill="{PINK}" letter-spacing="2">INSERT COIN TO CONTINUE</text>')
+            + f'<text class="ins" x="{W / 2}" y="{H - 20}" text-anchor="middle" font-family="{MONO}" font-weight="700" font-size="13" fill="{th['coin']}" letter-spacing="2">INSERT COIN TO CONTINUE</text>')
     return svg(W, H, css, body, "Credits: Yes, I drew the Go gophers. They're retired, free to use, and not open for commissions.")
 
 
@@ -252,6 +260,10 @@ def main():
         "phone/header.svg": header(cal, phone=True),
         "credits.svg": credits(),
         "phone/credits.svg": credits(phone=True),
+        "header-light.svg": header(cal, theme="light"),
+        "phone/header-light.svg": header(cal, phone=True, theme="light"),
+        "credits-light.svg": credits(theme="light"),
+        "phone/credits-light.svg": credits(phone=True, theme="light"),
     }
     for i, c in enumerate(CARTS):
         files[f"cart-{i + 1}.svg"] = cart(c, i)
