@@ -172,11 +172,11 @@ def header(cal, phone=False, theme="dark"):
         gx, gy = 31, 200
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.16)
         body = (frame(W, H, th, "top")
-                + title_text(22, 52, 26, "ASHLEY WILLIS", th) + title_text(22, 86, 26, "MAKES TINY TOYS.", th)
+                + title_text(22, 52, 26, "ASHLEY WILLIS", th) + title_text(22, 86, 24, "LEADS DEVREL AT GITHUB.", th)
                 + f'<text font-family="{SANS}" font-size="13.5" fill="{th['text']}">'
-                  f'<tspan x="22" y="118">Sr. Director of DevRel at GitHub. In my</tspan>'
-                  f'<tspan x="22" y="137">spare time I build small, delightful</tspan>'
-                  f'<tspan x="22" y="156">things for the web.</tspan></text>'
+                  f'<tspan x="22" y="118">Sr. Director of Developer Relations at</tspan>'
+                  f'<tspan x="22" y="137">GitHub. After hours, I build tiny,</tspan>'
+                  f'<tspan x="22" y="156">delightful toys for the web.</tspan></text>'
                 + f'<rect x="18" y="168" width="{W - 36}" height="134" rx="8" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
                 + f'<text x="31" y="189" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_mid}</text>'
                 + f'<text x="{W - 31}" y="189" text-anchor="end" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_right}</text>'
@@ -187,17 +187,78 @@ def header(cal, phone=False, theme="dark"):
         gx, gy = 66, 262
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.11)
         body = (frame(W, H, th, "top")
-                + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "MAKES TINY TOYS.", th)
+                + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "LEADS DEVREL AT GITHUB.", th)
                 + f'<text font-family="{SANS}" font-size="17" fill="{th['text']}">'
-                  f'<tspan x="44" y="178">Sr. Director of DevRel at GitHub. In my spare time I build small,</tspan>'
-                  f'<tspan x="44" y="201">delightful things for the web.</tspan></text>'
+                  f'<tspan x="44" y="178">Sr. Director of Developer Relations at GitHub. After hours,</tspan>'
+                  f'<tspan x="44" y="201">I build tiny, delightful toys for the web.</tspan></text>'
                 + f'<rect x="44" y="220" width="{W - 88}" height="152" rx="10" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
                 + f'<text x="66" y="246" font-family="{MONO}" font-size="12" fill="{TEAL}">P1 · {USER.upper()}</text>'
                 + f'<text x="{W / 2}" y="246" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_mid}</text>'
                 + f'<text x="{W - 66}" y="246" text-anchor="end" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_right}</text>'
                 + board
                 + f'<text x="44" y="394" font-family="{SANS}" font-size="13" fill="{th['muted']}">↑ my real contribution graph, redrawn every day as a game of snake</text>')
-    return svg(W, H, css, body, f"Ashley Willis makes tiny toys. A snake eats {USER}'s contribution graph: {total:,} contributions in the last year.")
+    return svg(W, H, css, body, f"Ashley Willis leads DevRel at GitHub. A snake eats {USER}'s contribution graph: {total:,} contributions in the last year.")
+
+STATS = [("PARTY", "10+", "people on my team"),
+         ("XP", "15 YRS", "in community & DevRel"),
+         ("CLASS", "LEADER", "builder · speaker · artist")]
+WINS = ["Spoken at GopherCon, OSCON, Google Cloud Next, All Things Open & RenderATL"]
+WINS_PHONE = [["Spoken at GopherCon, OSCON, Google Cloud", "Next, All Things Open & RenderATL"]]
+SCREEN = 'fill="#05070b" stroke="#3b2a5a" stroke-width="2"'
+
+
+def mainquest(phone=False, theme="dark"):
+    th = THEMES[theme]
+    alt = ("Main quest: Sr. Director of DevRel at GitHub. "
+           + ". ".join(f"{k}: {v}, {sub}" for k, v, sub in STATS) + ". " + " ".join(WINS))
+    if phone:
+        W, H = 400, 260
+        body = (frame(W, H, th, "mid")
+                + f'<text x="22" y="30" font-family="{MONO}" font-weight="800" font-size="13" fill="{th["head"]}" letter-spacing="2">★ MAIN QUEST</text>'
+                + f'<text x="{W - 22}" y="30" text-anchor="end" font-family="{MONO}" font-size="9.5" fill="{th["muted"]}" letter-spacing=".5">LVL: SR. DIRECTOR · DEVREL</text>'
+                + f'<rect x="18" y="42" width="{W - 36}" height="150" rx="8" {SCREEN}/>')
+        for i, (k, v, sub) in enumerate(STATS):
+            y = 82 + i * 44
+            if i:
+                body += f'<line x1="34" y1="{y - 27}" x2="{W - 34}" y2="{y - 27}" stroke="#3b2a5a" stroke-width="1.5" stroke-dasharray="4 4"/>'
+            body += (f'<text x="34" y="{y - 6}" font-family="{MONO}" font-size="10" fill="{TEAL}" letter-spacing="1.5">{k}</text>'
+                     f'<text x="98" y="{y}" font-family="{MONO}" font-weight="800" font-size="21" fill="{YELLOW}">{esc(v)}</text>'
+                     f'<text x="{W - 34}" y="{y - 5}" text-anchor="end" font-family="{SANS}" font-size="11" fill="#c9d1d9">{esc(sub)}</text>')
+        y = 216
+        for lines in WINS_PHONE:
+            body += f'<text x="22" y="{y}" font-family="{MONO}" font-weight="800" font-size="12" fill="{th["coin"]}">✓</text>'
+            body += f'<text font-family="{SANS}" font-size="13" fill="{th["text"]}">' + "".join(
+                f'<tspan x="40" y="{y + j * 18}">{esc(t)}</tspan>' for j, t in enumerate(lines)) + "</text>"
+            y += 18 * len(lines) + 6
+        return svg(W, H, "", body, alt)
+    W, H = 900, 250
+    body = (frame(W, H, th, "mid")
+            + f'<text x="44" y="34" font-family="{MONO}" font-weight="800" font-size="15" fill="{th["head"]}" letter-spacing="2">★ MAIN QUEST</text>'
+            + f'<text x="{W - 44}" y="34" text-anchor="end" font-family="{MONO}" font-size="12" fill="{th["muted"]}" letter-spacing="1">CURRENT LEVEL: SR. DIRECTOR · DEVREL @ GITHUB</text>'
+            + f'<rect x="44" y="48" width="{W - 88}" height="150" rx="10" {SCREEN}/>')
+    cw = (W - 88) / len(STATS)
+    for i, (k, v, sub) in enumerate(STATS):
+        cx = 44 + cw * i + cw / 2
+        if i:
+            body += f'<line x1="{44 + cw * i:.1f}" y1="70" x2="{44 + cw * i:.1f}" y2="176" stroke="#3b2a5a" stroke-width="2" stroke-dasharray="4 4"/>'
+        body += (f'<text x="{cx:.1f}" y="82" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TEAL}" letter-spacing="2">{k}</text>'
+                 f'<text x="{cx:.1f}" y="134" text-anchor="middle" font-family="{MONO}" font-weight="800" font-size="40" fill="{YELLOW}">{esc(v)}</text>'
+                 f'<text x="{cx:.1f}" y="164" text-anchor="middle" font-family="{SANS}" font-size="12.5" fill="#c9d1d9">{esc(sub)}</text>')
+    for i, q in enumerate(WINS):
+        y = 226 + i * 22
+        body += (f'<text x="44" y="{y}" font-family="{MONO}" font-weight="800" font-size="13" fill="{th["coin"]}">✓</text>'
+                 f'<text x="66" y="{y}" font-family="{SANS}" font-size="14.5" fill="{th["text"]}">{esc(q)}</text>')
+    return svg(W, H, "", body, alt)
+
+
+def sidequests(phone=False, theme="dark"):
+    th = THEMES[theme]
+    W, H, m, fs, sub = (400, 40, 22, 13, 9.5) if phone else (900, 44, 44, 15, 12)
+    body = (frame(W, H, th, "mid")
+            + f'<line x1="{m}" y1="8" x2="{W - m}" y2="8" stroke="{th["edge"]}" stroke-width="2" stroke-dasharray="6 6"/>'
+            + f'<text x="{m}" y="{H - 8}" font-family="{MONO}" font-weight="800" font-size="{fs}" fill="{th["head"]}" letter-spacing="2">◆ SIDE QUESTS</text>'
+            + f'<text x="{W - m}" y="{H - 8}" text-anchor="end" font-family="{MONO}" font-size="{sub}" fill="{th["muted"]}" letter-spacing="1">TINY TOYS I BUILD AFTER HOURS</text>')
+    return svg(W, H, "", body, "Side quests: tiny toys I build after hours.")
 
 
 CART_CSS = (f"@keyframes hop{{0%,49%{{transform:translateY(0)}}50%,100%{{transform:translateY(-.6px)}}}}"
@@ -284,6 +345,11 @@ def main():
         "credits-light.svg": credits(theme="light"),
         "phone/credits-light.svg": credits(phone=True, theme="light"),
     }
+    for t, sfx in (("dark", ""), ("light", "-light")):
+        files[f"mainquest{sfx}.svg"] = mainquest(theme=t)
+        files[f"phone/mainquest{sfx}.svg"] = mainquest(phone=True, theme=t)
+        files[f"sidequests{sfx}.svg"] = sidequests(theme=t)
+        files[f"phone/sidequests{sfx}.svg"] = sidequests(phone=True, theme=t)
     for i, c in enumerate(CARTS):
         files[f"cart-{i + 1}.svg"] = cart(c, i)
         files[f"phone/cart-{i + 1}.svg"] = cart_phone(c, i)
