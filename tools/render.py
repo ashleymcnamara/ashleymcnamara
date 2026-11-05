@@ -23,9 +23,11 @@ SHADOW = "#b8336a"
 TEAL = "#7ee0d4"
 THEMES = {
     "dark": {"edge": "#3b2a5a", "title": YELLOW, "shadow": SHADOW, "outline": None,
-             "text": "#c9d1d9", "muted": "#8b949e", "cab": "#1a0f2e", "head": YELLOW, "coin": PINK},
+             "text": "#c9d1d9", "muted": "#8b949e", "cab": "#1a0f2e", "head": YELLOW, "coin": PINK,
+             "eggline": "#0b0614", "oneup": TEAL},
     "light": {"edge": "#f0cfe0", "title": YELLOW, "shadow": INK, "outline": INK,
-              "text": "#4a3a5a", "muted": "#7a6a8a", "cab": "#fdebf3", "head": SHADOW, "coin": "#d1477a"},
+              "text": "#4a3a5a", "muted": "#7a6a8a", "cab": "#fdebf3", "head": SHADOW, "coin": "#d1477a",
+              "eggline": "#3b2a5c", "oneup": "#b8336a"},
 }
 LEVELS = {"NONE": "#161b22", "FIRST_QUARTILE": "#0e4429", "SECOND_QUARTILE": "#006d32",
           "THIRD_QUARTILE": "#26a641", "FOURTH_QUARTILE": "#39d353"}
@@ -131,9 +133,9 @@ def snake_board(weeks, x0, y0, pitch, cell, step):
     return css, "".join(out) + "".join(segs)
 
 
-def svg(w, h, css, body, title):
+def svg(w, h, css, body, title, x=0, y=0):
     reduce = "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" preserveAspectRatio="none" '
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x} {y} {w} {h}" width="{w}" height="{h}" preserveAspectRatio="none" '
             f'role="img" aria-label="{esc(title)}"><title>{esc(title)}</title>'
             f"<style>{css}{reduce}</style>{body}</svg>\n")
 
@@ -159,43 +161,78 @@ def frame(W, H, th, part):
     return (f'<rect x="{x}" y="{y}" width="{w:.2f}" height="{h}" rx="16" fill="{th["cab"]}"/>')
 
 
+EGG = ["....XXXXX....", "..XXPPPPPXX..", ".XPHHPPPPPDX.", ".XPHPPPPPPDX.", "XPPPPPPPPPPDX",
+       "XPPLLLLLLLPDX", "XPPLSSSSSLPDX", "XPPLSSBSSLPDX", "XPPLSSSSSLPDX", "XPPLLLLLLLPDX",
+       "XPPPPPPPPPPDX", "XPPOPPOPPOPDX", ".XPPPPPPPPDX.", "..XXDDDDDXX..", "....XXXXX...."]
+EGG_URL = "https://ashleymcnamara.github.io/devgotchi/"
+EGG_CSS = (".e{transform-origin:50% 100%;transform-box:fill-box;animation:w 6s steps(1) infinite}"
+           "@keyframes w{0%,84%{transform:rotate(0)}86%{transform:rotate(-8deg)}88%{transform:rotate(8deg)}"
+           "90%{transform:rotate(-5deg)}92%{transform:rotate(4deg)}94%,100%{transform:rotate(0)}}"
+           ".u,.b{animation:k 1.2s steps(1) infinite}.b{animation-duration:2.4s}@keyframes k{50%{opacity:0}}")
+
+
+def egg(x, y, px, th):
+    """the devgotchi easter egg: a tiny pixel egg that wiggles now and then."""
+    c = {"X": th["eggline"], "P": PINK, "H": "#fff0f6", "D": "#e07aa4", "L": "#fbd3e2",
+         "S": "#e6defa", "B": "#3b2a5c", "O": YELLOW}
+    cells = []
+    for j, row in enumerate(EGG):
+        for i, ch in enumerate(row):
+            if ch != ".":
+                blink = ' class="b"' if ch == "B" else ""
+                cells.append(f'<rect x="{x + i * px}" y="{y + j * px}" width="{px}" height="{px}" fill="{c[ch]}"{blink}/>')
+    return f'<g class="e" shape-rendering="crispEdges">{"".join(cells)}</g>'
+
+
 def header(cal, phone=False, theme="dark"):
+    """three slices: title (links to the snake), egg tile (links to devgotchi), graph (links to the snake)."""
     th = THEMES[theme]
     weeks = cal["weeks"]
     total = cal["totalContributions"]
     best = max(d["contributionCount"] for wk in weeks for d in wk["contributionDays"])
     hud_mid = f"{total:,} CONTRIBUTIONS"
     hud_right = f"BEST DAY {best}"
+    one_up = lambda x, y, fs: (f'<text class="u" x="{x}" y="{y}" text-anchor="middle" font-family="{MONO}" '
+                               f'font-weight="700" font-size="{fs}" fill="{th["oneup"]}">1UP</text>')
     if phone:
         weeks = weeks[-26:]
-        W, H, pitch, cell = 400, 330, 13, 10.5
+        W, H, pitch, cell, CX, CY = 400, 330, 13, 10.5, 320, 62
         gx, gy = 31, 200
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.16)
-        body = (frame(W, H, th, "top")
-                + title_text(22, 52, 26, "ASHLEY WILLIS", th) + title_text(22, 86, 24, "LEADS DEVREL AT GITHUB.", th)
-                + f'<text font-family="{SANS}" font-size="13.5" fill="{th['text']}">'
-                  f'<tspan x="22" y="124">After hours, I build tiny,</tspan>'
-                  f'<tspan x="22" y="144">delightful toys for the web.</tspan></text>'
-                + f'<rect x="18" y="168" width="{W - 36}" height="134" rx="8" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
-                + f'<text x="31" y="189" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_mid}</text>'
-                + f'<text x="{W - 31}" y="189" text-anchor="end" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_right}</text>'
-                + board
-                + f'<text x="22" y="320" font-family="{SANS}" font-size="11" fill="{th['muted']}">↑ my real contribution graph, redrawn daily as a game of snake</text>')
+        title = (frame(W, H, th, "top")
+                 + title_text(22, 52, 26, "ASHLEY WILLIS", th))
+        tile = egg(352, 12, 3, th) + one_up(337, 39, 10)
+        graph = (frame(W, H, th, "top")
+                 + title_text(22, 86, 24, "LEADS DEVREL AT GITHUB.", th)
+                 + f'<text font-family="{SANS}" font-size="13.5" fill="{th['text']}">'
+                   f'<tspan x="22" y="124">After hours, I build tiny,</tspan>'
+                   f'<tspan x="22" y="144">delightful toys for the web.</tspan></text>'
+                 + f'<rect x="18" y="168" width="{W - 36}" height="134" rx="8" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
+                 + f'<text x="31" y="189" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_mid}</text>'
+                 + f'<text x="{W - 31}" y="189" text-anchor="end" font-family="{MONO}" font-size="10" fill="{TEAL}">{hud_right}</text>'
+                 + board
+                 + f'<text x="22" y="320" font-family="{SANS}" font-size="11" fill="{th['muted']}">↑ my real contribution graph, redrawn daily as a game of snake</text>')
     else:
-        W, H, pitch, cell = 900, 410, 14.6, 11.5
+        W, H, pitch, cell, CX, CY = 900, 410, 14.6, 11.5, 720, 200
         gx, gy = 66, 262
         css, board = snake_board(weeks, gx, gy, pitch, cell, 0.11)
-        body = (frame(W, H, th, "top")
-                + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "LEADS DEVREL AT GITHUB.", th)
-                + f'<text font-family="{SANS}" font-size="17" fill="{th['text']}">'
-                  f'<tspan x="44" y="186">After hours, I build tiny, delightful toys for the web.</tspan></text>'
-                + f'<rect x="44" y="220" width="{W - 88}" height="152" rx="10" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
-                + f'<text x="66" y="246" font-family="{MONO}" font-size="12" fill="{TEAL}">P1 · {USER.upper()}</text>'
-                + f'<text x="{W / 2}" y="246" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_mid}</text>'
-                + f'<text x="{W - 66}" y="246" text-anchor="end" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_right}</text>'
-                + board
-                + f'<text x="44" y="394" font-family="{SANS}" font-size="13" fill="{th['muted']}">↑ my real contribution graph, redrawn every day as a game of snake</text>')
-    return svg(W, H, css, body, f"Ashley Willis leads DevRel at GitHub. A snake eats {USER}'s contribution graph: {total:,} contributions in the last year.")
+        title = (frame(W, H, th, "top")
+                 + title_text(44, 82, 46, "ASHLEY WILLIS", th) + title_text(44, 136, 46, "LEADS DEVREL AT GITHUB.", th)
+                 + f'<text font-family="{SANS}" font-size="17" fill="{th['text']}">'
+                   f'<tspan x="44" y="186">After hours, I build tiny, delightful toys for the web.</tspan></text>')
+        tile = egg(783, 62, 5, th) + one_up(815, 50, 15)
+        graph = (frame(W, H, th, "top")
+                 + f'<rect x="44" y="220" width="{W - 88}" height="152" rx="10" fill="#05070b" stroke="#3b2a5a" stroke-width="2"/>'
+                 + f'<text x="66" y="246" font-family="{MONO}" font-size="12" fill="{TEAL}">P1 · {USER.upper()}</text>'
+                 + f'<text x="{W / 2}" y="246" text-anchor="middle" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_mid}</text>'
+                 + f'<text x="{W - 66}" y="246" text-anchor="end" font-family="{MONO}" font-size="12" fill="{TEAL}">{hud_right}</text>'
+                 + board
+                 + f'<text x="44" y="394" font-family="{SANS}" font-size="13" fill="{th['muted']}">↑ my real contribution graph, redrawn every day as a game of snake</text>')
+    alt = f"Ashley Willis leads DevRel at GitHub. A snake eats {USER}'s contribution graph: {total:,} contributions in the last year."
+    return {"header": svg(CX, CY, "", title, "Ashley Willis leads DevRel at GitHub. After hours, I build tiny, delightful toys for the web."),
+            "egg": svg(W - CX, CY, EGG_CSS, frame(W, H, th, "top") + tile, "A tiny wiggling egg. Press start to raise Byte.", x=CX),
+            "graph": svg(W, H - CY, css, graph, alt, y=CY)}
+
 
 STATS = [("PARTY", "10+", "people on my team"),
          ("XP", "15 YRS", "in community & DevRel"),
@@ -334,16 +371,15 @@ def credits(phone=False, theme="dark"):
 def main():
     cal = fetch_calendar()
     files = {
-        "header.svg": header(cal),
-        "phone/header.svg": header(cal, phone=True),
         "credits.svg": credits(),
         "phone/credits.svg": credits(phone=True),
-        "header-light.svg": header(cal, theme="light"),
-        "phone/header-light.svg": header(cal, phone=True, theme="light"),
         "credits-light.svg": credits(theme="light"),
         "phone/credits-light.svg": credits(phone=True, theme="light"),
     }
     for t, sfx in (("dark", ""), ("light", "-light")):
+        for d, ph in (("", False), ("phone/", True)):
+            for part, content in header(cal, phone=ph, theme=t).items():
+                files[f"{d}{part}{sfx}.svg"] = content
         files[f"mainquest{sfx}.svg"] = mainquest(theme=t)
         files[f"phone/mainquest{sfx}.svg"] = mainquest(phone=True, theme=t)
         files[f"sidequests{sfx}.svg"] = sidequests(theme=t)
